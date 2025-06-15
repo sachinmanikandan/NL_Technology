@@ -35,10 +35,18 @@ class SignUpView(CreateView):
 # method views
 
 
-class MethodListView(LoginRequiredMixin,ListView):
+class MethodListView(LoginRequiredMixin, ListView):
     model = Method
     template_name = 'method/methodList.html'
     context_object_name = 'methods'
+
+    def get_queryset(self):
+        queryset = Method.objects.all()
+        search_query = self.request.GET.get('search', '')
+        if search_query:
+            queryset = queryset.filter(name__icontains=search_query)
+        return queryset
+
 
 
 class MethodCreateView(LoginRequiredMixin,CreateView):

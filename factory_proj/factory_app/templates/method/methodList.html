@@ -3,6 +3,7 @@
 {% block content %}
 <div class="min-h-screen bg-gradient-to-b from-blue-50 via-white to-white py-16 px-6">
 
+  <!-- Title and Search -->
   <header class="max-w-5xl mx-auto mb-12 text-center">
     <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight tracking-tight">
       Factory Methods Library
@@ -12,6 +13,7 @@
       Browse through all operational methods used in your factory processes.
     </p>
 
+    <!-- Search Bar -->
     <form method="get" action="" class="flex justify-center mt-4">
       <input type="text" name="search" placeholder="Search method name..." value="{{ request.GET.search }}"
              class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -28,6 +30,7 @@
     {% endif %}
   </header>
 
+  <!-- Method Cards -->
   {% if methods %}
     <main class="max-w-5xl mx-auto space-y-14">
       {% for method in methods %}
@@ -43,14 +46,7 @@
 
           <div class="mt-4 flex gap-4 text-sm">
             <a href="{% url 'method-edit' method.pk %}" class="text-blue-600 font-semibold hover:underline">✏️</a>
-            <form method="post" action="{% url 'method-delete' method.pk %}" class="inline"
-              onsubmit="return confirm('Are you sure you want to delete this method?');">
-            {% csrf_token %}
-            <button type="submit" class="text-red-600 font-semibold hover:underline bg-transparent border-none cursor-pointer">
-    🗑️
-  </button>
-</form>
-
+            <a href="#" onclick="confirmDelete({{ method.pk }})" class="text-red-600 font-semibold hover:underline">🗑️</a>
           </div>
 
         </article>
@@ -60,6 +56,7 @@
     <p class="text-center text-gray-600 text-lg mt-20">No methods found.</p>
   {% endif %}
 
+  <!-- Add Method Button -->
   <div class="mt-16 text-center">
     <a href="{% url 'add-method' %}"
        class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium px-6 py-3 shadow-md transition">
@@ -68,8 +65,16 @@
   </div>
 </div>
 
+<!-- Delete Confirmation -->
+<script>
+  function confirmDelete(id) {
+    if (confirm("Are you sure you want to delete this method?")) {
+      window.location.href = `/methods/${id}/delete/`;
+    }
+  }
+</script>
 
-
+<!-- Animations -->
 <style>
   .animate-fade-in {
     animation: fade-in 1s ease-out;
