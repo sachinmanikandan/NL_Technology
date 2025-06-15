@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900">
+    <div class="min-h-screen flex items-center justify-center px-4">
+      <div class="max-w-4xl w-full bg-white rounded-3xl shadow-xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+      <div class="bg-gray-900 text-white p-10 flex flex-col justify-center">
+        <h2 class="text-6xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
+          Welcome
+        </h2>
+        <p class="text-2xl md:text-3xl text-gray-300">
+          Log in to your Factory Dashboard to manage your workflow and access powerful tools.
+        </p>
+        
+      </div>
+
+        <div class="p-10">
+          <h3 class="text-2xl font-semibold mb-6 text-gray-800 text-center">Login</h3>
+
+          <form method="post" class="space-y-5">
+            {% csrf_token %}
+
+            <div>
+              <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+              <input type="text" name="username" id="id_username"
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+              <label for="id_password" class="block text-sm font-medium text-gray-700">Password</label>
+              <input type="password" name="password" id="id_password"
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <button type="submit"
+              class="w-full py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+              Login
+            </button>
+          </form>
+
+          <p class="text-sm text-gray-600 text-center mt-6">
+            Don't have an account?
+            <a href="{% url 'signup' %}" class="text-blue-600 hover:underline">Sign Up</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

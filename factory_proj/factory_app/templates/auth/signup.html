@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900">
+    <div class="min-h-screen flex items-center justify-center px-4">
+      <div class="max-w-4xl w-full bg-white rounded-3xl shadow-xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+      <div class="bg-gray-900 text-white p-10 flex flex-col justify-center">
+        <h2 class="text-6xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
+          Create your account
+        </h2>
+        <p class="text-2xl md:text-3xl text-gray-300">
+          Join the Factory Dashboard to manage methods, machines, and materials efficiently.
+        </p>
+      </div>
+
+        <div class="p-10">
+          <h3 class="text-2xl font-semibold mb-6 text-gray-800">Sign Up</h3>
+
+          <form method="post" class="space-y-5">
+            {% csrf_token %}
+            {% for field in form %}
+              <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">
+                  {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                  <p class="text-red-500 text-xs mt-1">{{ field.errors.0 }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="w-full py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition">
+              Create Account
+            </button>
+          </form>
+
+          <p class="text-sm text-gray-600 text-center mt-6">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

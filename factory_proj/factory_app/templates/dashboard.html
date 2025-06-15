@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4">
+
+  
+  <section class="relative bg-white rounded-lg shadow mb-10 overflow-hidden animate-fade-in">
+    <img
+      src="{% static 'images/industry.jpg' %}"
+      alt="Factory Banner"
+      class="w-full h-74 object-cover"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-10">
+      <h1 class="text-4xl md:text-5xl text-white font-bold mb-2 drop-shadow-lg animate-slide-up">
+        Welcome to Food Factory
+      </h1>
+      <p class="text-lg text-gray-200 mb-4 animate-slide-up delay-100">
+        Modern Factory Resource Management — Simple, Efficient, Scalable.
+      </p>
+      <a
+        href="#overview"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition-all animate-slide-up delay-200"
+      >
+        Get Started ↓
+      </a>
+    </div>
+  </section>
+
+  <section id="overview" class="animate-fade-in-up mb-10">
+    <h2 class="text-3xl font-bold mb-6 text-blue-700">Overview</h2>
+
+      <p class="text-base text-gray-700 mb-6 leading-relaxed">
+    FactoryApp helps streamline your factory’s operations by centralizing method definitions, machine management, and material tracking — all in one place. Whether you're managing production workflows or tracking inventory, FactoryApp ensures your team stays efficient and informed. With intuitive dashboards and quick access to essential tools, managing your resources has never been easier.
+  </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="flex bg-blue-100 p-4 rounded-lg shadow-lg items-center">
+        <img
+          src="{% static 'images/method.jpg' %}"
+          alt="Method Photo"
+          class="w-24 h-24 object-cover rounded mr-4"
+        />
+        <div>
+          <h3 class="text-xl font-semibold text-blue-800">Total Methods</h3>
+          <p class="text-3xl font-bold">{{ methods|length }}</p>
+          <p class="text-sm text-blue-700 mt-1">
+            Defined operational processes.
+          </p>
+        </div>
+      </div>
+
+    
+      <div class="flex bg-green-100 p-4 rounded-lg shadow-lg items-center">
+        <img
+          src="{% static 'images/machine.jpg' %}"
+          alt="Machine Photo"
+          class="w-24 h-24 object-cover rounded mr-4"
+        />
+        <div>
+          <h3 class="text-xl font-semibold text-green-800">
+            Machines Registered
+          </h3>
+          <p class="text-3xl font-bold">{{ machines|length }}</p>
+          <p class="text-sm text-green-700 mt-1">
+            All active & standby equipment.
+          </p>
+        </div>
+      </div>
+
+  
+      <div class="flex bg-yellow-100 p-4 rounded-lg shadow-lg items-center">
+        <img
+          src="{% static 'images/material.jpg' %}"
+          alt="Material Photo"
+          class="w-24 h-24 object-cover rounded mr-4"
+        />
+        <div>
+          <h3 class="text-xl font-semibold text-yellow-800">
+            Materials In Stock
+          </h3>
+          <p class="text-3xl font-bold">{{ materials|length }}</p>
+          <p class="text-sm text-yellow-700 mt-1">
+            Current raw material inventory.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="animate-fade-in-up delay-200 mb-10">
+    <h2 class="text-3xl font-bold mb-6 text-blue-700">Create Actions</h2>
+
+      <p class="text-base text-gray-700 mb-6 leading-relaxed">
+    FactoryApp helps streamline your factory’s operations by centralizing method definitions, machine management, and material tracking — all in one place. Whether you're managing production workflows or tracking inventory, FactoryApp ensures your team stays efficient and informed. With intuitive dashboards and quick access to essential tools, managing your resources has never been easier.
+  </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a
+        href="{% url 'add-method' %}"
+        class="bg-blue-600 text-white p-5 rounded-lg shadow hover:bg-blue-700 transition-all"
+      >
+        <h4 class="text-xl font-semibold mb-2">➕ Add New Method</h4>
+        <p class="text-sm">Define new processes and assign managers.</p>
+      </a>
+      <a
+        href="{% url 'machine-add' %}"
+        class="bg-green-600 text-white p-5 rounded-lg shadow hover:bg-green-700 transition-all"
+      >
+        <h4 class="text-xl font-semibold mb-2">⚙️ Register Machine</h4>
+        <p class="text-sm">Manage all operational and standby machines.</p>
+      </a>
+      <a
+        href="{% url 'material-add' %}"
+        class="bg-yellow-600 text-white p-5 rounded-lg shadow hover:bg-yellow-700 transition-all"
+      >
+        <h4 class="text-xl font-semibold mb-2">📦 Add Material</h4>
+        <p class="text-sm">
+          Maintain accurate inventory with each new material.
+        </p>
+      </a>
+    </div>
+  </section>
+</div>
+{% endblock %}
